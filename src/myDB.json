@@ -1,0 +1,28 @@
+{
+  "Users": [
+    {
+      "id": "294950472916402188",
+      "publicAddress": "",
+      "withdrawAddress": "",
+      "privateKey": ""
+    },
+    {
+      "id": "6969",
+      "publicAddress": "BCtVGiVFpj2CenskgqbpSBWAi5GpBR8xTX",
+      "withdrawAddress": "000",
+      "privateKey": "0000"
+    },
+    {
+      "id": "294950472916402188",
+      "publicAddress": "",
+      "withdrawAddress": "BFCuv5jcuXgBgUE2ETGMefJuNkTYg3nvCU",
+      "privateKey": ""
+    },
+    {
+      "id": "420420420",
+      "publicAddress": "0000",
+      "withdrawAddress": "000",
+      "privateKey": "0000"
+    }
+  ]
+}
