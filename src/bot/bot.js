@@ -61,7 +61,6 @@ function gotMessage(msg) {
                 msg.reply('First you have to register')
                 return;
             }
-            // Bæta inn síðar
             if (!help.hasAddress(receverId)) {
                 msg.reply('This user does not have an account')
                 return;
@@ -69,6 +68,7 @@ function gotMessage(msg) {
             var amound = messege[2];
             if (!isNumber(amound)) {
                 msg.reply('Command has to be of form:\n!sendTip @someone amound');
+                return;
             }
             var result = sendTip.sendtip(payerId, receverId, amound);
             switch (result) {
@@ -78,6 +78,7 @@ function gotMessage(msg) {
                 case 1:
                     console.log("Not enough balance")
                     msg.reply("Not enough balance for this tip")
+                    return;
                     break;
                 default:
                     msg.reply("Tip was sent.\nTxid: " + result)
@@ -96,12 +97,10 @@ function gotMessage(msg) {
     }
 
 }
-var isNumber = function isNumber(value) {
+function isNumber(value) {
     return typeof value === 'number' && isFinite(value);
 }
 
 function getHelp() {
     return "This is a smileycoin tippingbot.\nIf you don't have a smileycoin address, you should first get you one. Info at https://smileyco.in \nCommands\:\n!register (your withdraw address)      //Register for an account\n!sendTip @discordUser (amount)      //Send users smileyCoins\n!withdraw                                                 //Withdraw your funds to your withdraw address\n!balance                                                    //Check your balance\n"
 }
-
-var hehe = 0;

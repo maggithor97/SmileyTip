@@ -15,20 +15,14 @@ module.exports = {
     },
 
     getPrivKey: function (publicAddr) {
-
-        exec("smileycoin-cli dumpprivkey " + publicAddr, (error, stdout, stderr) => {
-            if (error) {
-                console.log(`error: ${error.message}`);
-                return;
-            }
-            if (stderr) {
-                console.log(`stderr: ${stderr}`);
-                return;
-            }
-            console.log(`stdout: ${stdout}`);
-            return stdout;
+        return new Promise((resolve, reject) => {
+            exec("smileycoin-cli dumpprivkey "+ publicAddr, (error, stdout, stderr) => {
+                if (error) {
+                    console.warn(error);
+                }
+                resolve(stdout ? stdout : stderr);
+            });
         });
-        return;
     },
 
     getListUnspent: function (address) {
@@ -70,7 +64,7 @@ module.exports = {
         }
         // Test
         var createCommand = "smileycoin-cli createrawtransaction " + myInputs + myOutputs;
-        console.log(create);
+        console.log("createRaw command: \n" + createCommand);
         //
 
         return new Promise((resolve, reject) => {

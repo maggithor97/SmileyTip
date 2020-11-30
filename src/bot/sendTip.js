@@ -10,13 +10,12 @@ module.exports = {
   // Main function
   sendtip: function (payerId, receverId, amound) {
     var payerAddr = help.idToAddress(payerId);
-    console.log('payeraddress: ' + payerAddr);
     var receverAddr = help.idToAddress(receverId);
 
-    /** Does he have the money */
+    
     var unspentList = listunspent(payerAddr);
-    // Þegar unpentlist er komið
     unspentList.then(function (result) {
+      /** Does he have the money */
       var payersBalance = getBalance(result);
       if (payersBalance < amound) {
         return 1;
