@@ -51,8 +51,14 @@ function gotMessage(msg) {
             var userId = msg.author.id;
             // Calls register() in register.js
             var newAddr = register.register(userId, returnAddress);
-            console.log(newAddr)
-            msg.reply('Your public address: ' + newAddr);
+            console.log("TypeOf: "+ typeof newAddr);
+            console.log("inní bot.js: "+newAddr)
+            newAddr.then(function (res){
+	    	console.log("then: "+ res);
+		msg.reply('Your public address: ' + res);
+
+	    })    
+	
             break;
         case "!sendTip":
             var payerId = msg.author.id;
@@ -65,7 +71,7 @@ function gotMessage(msg) {
                 msg.reply('This user does not have an account')
                 return;
             }
-            var amound = messege[2];
+            var amound = parseInt(messege[2]);
             if (!isNumber(amound)) {
                 msg.reply('Command has to be of form:\n!sendTip @someone amound');
                 return;
@@ -98,7 +104,8 @@ function gotMessage(msg) {
 
 }
 function isNumber(value) {
-    return typeof value === 'number' && isFinite(value);
+    var result = typeof value === 'number' && isFinite(value);
+	return result;
 }
 
 function getHelp() {

@@ -3,7 +3,7 @@ var smileyCoin = require('../smiley/smilecoin-cli');
 
 module.exports = {
     // Main function
-    register: function (userId, returnAddress) {
+    register: async function (userId, returnAddress) {
 
         /** DATABASE **/
         var data = fs.readFileSync('../myDB.json');
@@ -26,14 +26,15 @@ module.exports = {
                 var newData =
                 {
                     "id": idString,
-                    "publicAddress": newAddr,
+                    "publicAddress": newAddress,
                     "withdrawAddress": returnAddress,
-                    "privateKey": newPrivKey
+                    "privateKey": newPriv
                 }
-                users.Users.push(newData);
-                fs.writeFile('../myDB.json', JSON.stringify(users, null, 2), finished)
-                return newAddr;
+                //users.Users.push(newData);
+                //fs.writeFile('../myDB.json', JSON.stringify(users, null, 2), finished)
+                console.log("new Address: "+ newAddress + "   typeof: " + typeof newAddress);
             })
+            return newAddress;
         })
 
 

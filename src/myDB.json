@@ -1,7 +1,7 @@
 {
   "Users": [
     {
-      "id": "294950472916402188",
+      "id": "69",
       "publicAddress": "",
       "withdrawAddress": "",
       "privateKey": ""
@@ -13,7 +13,7 @@
       "privateKey": "0000"
     },
     {
-      "id": "294950472916402188",
+      "id": "420",
       "publicAddress": "",
       "withdrawAddress": "BFCuv5jcuXgBgUE2ETGMefJuNkTYg3nvCU",
       "privateKey": ""

@@ -1,7 +1,6 @@
 {
   "name": "tippingbot",
   "version": "1.0.0",
-  "description": "",
   "main": "/src/bot/bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,5 +11,14 @@
     "discord.js": "^12.4.1",
     "node-fetch": "^2.6.1",
     "request": "^2.88.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maggithor97/SmileyTip.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maggithor97/SmileyTip/issues"
+  },
+  "homepage": "https://github.com/maggithor97/SmileyTip#readme",
+  "description": ""
 }

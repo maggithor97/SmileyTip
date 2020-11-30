@@ -15,6 +15,7 @@ module.exports = {
     
     var unspentList = listunspent(payerAddr);
     unspentList.then(function (result) {
+      console.log(result);
       /** Does he have the money */
       var payersBalance = getBalance(result);
       if (payersBalance < amound) {
