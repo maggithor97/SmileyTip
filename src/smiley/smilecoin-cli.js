@@ -36,8 +36,9 @@ module.exports = {
         });
     },
 
-    createRawTransaction: function (unspentList, amount, payerAddr, receverAddr) {
-        var myInputs = [];
+    createRawTransaction: function (unspent, amount, payerAddr, receverAddr) {
+	   let unspentList = JSON.parse(unspent)
+	    var myInputs = [];
         var smileySum = 0;
         var i = 0;
         while (amount + 1 > smileySum) {
@@ -49,24 +50,26 @@ module.exports = {
             myInputs.push(obj);
             i++;
         }
-        var myOutputs;
+        var myOutputs = {};
         // Send max 15 smly to miner
         if (smileySum - amount > 10) {
             var moneyBack = smileySum - amount - 10;
-            myOutputs = {
-                receverAddr: amount,
-                payerAddr: moneyBack
-            };
+            //myOutputs = {
+            //    receverAddr.toString(): amount,
+            //    payerAddr: moneyBack
+            //};
+	    
+	   myOutputs[receverAddr] = amount;
+	    myOutputs[payerAddr] = moneyBack;
         } else {
-            myOutputs = {
-                receverAddr: amount
-            };
+		myOutputs[receverAddr] = amount;
         }
         // Test
-        var createCommand = "smileycoin-cli createrawtransaction " + myInputs + myOutputs;
+	console.log("myOutputs:\n" + JSON.stringify(myOutputs));
+        var createCommand = "smileycoin-cli createrawtransaction " +"'"+ JSON.stringify(myInputs) +"' "+"'"+ JSON.stringify(myOutputs)+"'";
         console.log("createRaw command: \n" + createCommand);
         //
-
+	console.log("\n\n")
         return new Promise((resolve, reject) => {
             exec(createCommand, (error, stdout, stderr) => {
                 if (error) {

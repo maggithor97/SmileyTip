@@ -8,7 +8,7 @@ var users = JSON.parse(data);
 
 module.exports = {
   // Main function
-  sendtip: function (payerId, receverId, amound) {
+  sendtip: function (payerId, receverId, amount) {
     var payerAddr = help.idToAddress(payerId);
     var receverAddr = help.idToAddress(receverId);
 
@@ -17,19 +17,24 @@ module.exports = {
     unspentList.then(function (result) {
       console.log(result);
       /** Does he have the money */
-      var payersBalance = getBalance(result);
-      if (payersBalance < amound) {
+      var payersBalance = help.getBalance(result);
+      if (payersBalance < amount) {
         return 1;
       }
       /** Create raw */
       var createHex = smileyCoin.createRawTransaction(result, amount, payerAddr, receverAddr);
       createHex.then(function (hexResult) {
         /** Sign and send */
+	      console.log("sendTip.js: CRT hex: " + hexResult);
         var signHex = smileyCoin.signRawTransaction(hexResult);
-        signHex.then(function (signObj) {
+        signHex.then(function (signObjString) {
+	      console.log("sendTip.js: SRT hex: " + signObj);
+	var signObj = JSON.parse(signObjString);
           var signHex = signObj.hex;
           var txid = smileyCoin.sendRawTransaction(signHex);
           txid.then(function (txid) {
+		  
+	      console.log("sendTip.js: send txid: " + txid);
             return txid;
           })
         })

@@ -14,7 +14,7 @@
     },
     {
       "id": "420",
-      "publicAddress": "",
+      "publicAddress": "BEtZyyYqDXqmRJJ45nnL15cuASfiXg9Yik",
       "withdrawAddress": "BFCuv5jcuXgBgUE2ETGMefJuNkTYg3nvCU",
       "privateKey": ""
     },
@@ -23,6 +23,12 @@
       "publicAddress": "0000",
       "withdrawAddress": "000",
       "privateKey": "0000"
+    },
+    {
+      "id": "294950472916402188",
+      "publicAddress": "BRPbpiWnidXX2L1gEJ4jR8Mv6RY8SdmE5G\n",
+      "withdrawAddress": "BFCuv5jcuXgBgUE2ETGMefJuNkTYg3nvCU",
+      "privateKey": "Pmnx8KGRZUkbKEtkSteijaE2nPUkp7KcXerWdhUAXGDyWZxqW4EK\n"
     }
   ]
 }

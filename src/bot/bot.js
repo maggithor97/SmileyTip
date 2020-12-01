@@ -62,7 +62,8 @@ function gotMessage(msg) {
 		    break;
         case "!sendTip":
             var payerId = msg.author.id;
-            var receverId = msg.mentions.users.first().id;
+            //var receverId = msg.mentions.users.first().id;
+	    var receverId = 420;
             if (!help.hasAddress(payerId)) {
                 msg.reply('First you have to register')
                 return;
@@ -93,8 +94,9 @@ function gotMessage(msg) {
 
         case "!balance":
             var userId = msg.author.id;
-            var balance = balance.balance(userId);
-            msg.reply("Your balance: " + balance);
+            var userBalance = balance.balance(userId);
+	    	console.log(userBalance);
+            msg.reply("Your balance: " + userBalance);
             break;
         case "!withdraw":
             var userId = msg.author.id;

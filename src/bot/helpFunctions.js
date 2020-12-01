@@ -13,7 +13,6 @@ module.exports = {
         var n = users1.Users.length;
         for (var i = 0; i < n; i++) {
             if (users1.Users[i].id == userIdString) {
-		    console.log("helper: " + users1.Users[i].publicAddress);
                 return users1.Users[i].publicAddress;
             }
         }
