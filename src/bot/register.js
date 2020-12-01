@@ -30,12 +30,13 @@ module.exports = {
                     "withdrawAddress": returnAddress,
                     "privateKey": newPriv
                 }
-                //users.Users.push(newData);
-                //fs.writeFile('../myDB.json', JSON.stringify(users, null, 2), finished)
-                console.log("new Address: "+ newAddress + "   typeof: " + typeof newAddress);
+                users.Users.push(newData);
+                fs.writeFile('../myDB.json', JSON.stringify(users, null, 2), finished)
+                console.log("register.js: new Address: "+ newAddress + "\nregister.js: typeof: " + typeof newAddress);
+            	return newAddress;
             })
-            return newAddress;
-        })
+        	//Spilast á undan
+	})
 
 
     }

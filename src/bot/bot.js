@@ -51,15 +51,15 @@ function gotMessage(msg) {
             var userId = msg.author.id;
             // Calls register() in register.js
             var newAddr = register.register(userId, returnAddress);
-            console.log("TypeOf: "+ typeof newAddr);
-            console.log("inní bot.js: "+newAddr)
-            newAddr.then(function (res){
-	    	console.log("then: "+ res);
-		msg.reply('Your public address: ' + res);
-
-	    })    
+	    msg.reply("You have registered!\nUse the command '!myAddress' to get your new address")
 	
             break;
+	case "!myAddress":
+		    var userId = msg.author.id;
+		    var userAddress = help.idToAddress(userId);
+		    console.log("!myAddress: "+ userAddress + " " + typeof userAddress);
+		    msg.reply("Address: " + userAddress);
+		    break;
         case "!sendTip":
             var payerId = msg.author.id;
             var receverId = msg.mentions.users.first().id;

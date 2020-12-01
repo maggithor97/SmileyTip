@@ -7,12 +7,17 @@ var users = JSON.parse(data);
 
 module.exports = {
     idToAddress: function (userId) {
-        var n = users.Users.length;
+	var data1 = fs.readFileSync('../myDB.json');
+	var users1 = JSON.parse(data1);
+	var userIdString = userId.toString();
+        var n = users1.Users.length;
         for (var i = 0; i < n; i++) {
-            if (users.Users[i].id == userId) {
-                return users.Users[i].publicAddress;
+            if (users1.Users[i].id == userIdString) {
+		    console.log("helper: " + users1.Users[i].publicAddress);
+                return users1.Users[i].publicAddress;
             }
         }
+	return "nothing"
     },
     getBalance: function (unspentList) {
         var n = unspentList.length;
