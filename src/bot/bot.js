@@ -130,7 +130,7 @@ module.exports = {
     notifySendTip: function (payerId, receverId, amount) {
         var payer = client.users.cache.get(payerId).username;
         //var recever = client.users.cache.get(receverId).username;
-        client.users.cache.get(payerId).send('You sent ' + recever + ' ' + amount + "SMLY's");
+        client.users.cache.get(payerId).send('You sent ' + ' ' + amount + "SMLY's");
         //client.users.cache.get(receverId).send(payer+ ' sent you ' + amount+"SMLY's");
     }
 

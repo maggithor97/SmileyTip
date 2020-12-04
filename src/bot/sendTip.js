@@ -19,7 +19,7 @@ module.exports = {
       /** Does he have the money */
       var payersBalance = help.getBalance(result);
       if (payersBalance < amount) {
-        return 1;
+	      return 1;
       }
       /** Create raw */
       var createHex = smileyCoin.createRawTransaction(result, amount, payerAddr, receverAddr);
