@@ -5,15 +5,6 @@ var balance = require('./balance');
 var help = require('./helpFunctions');
 
 
-module.exports = {
-    sendBalance: function (userBalance){
-        console.log("bot.js: sendBalance function:  " + userBalance);
-    }
-};
-
-
-
-
 /** DATABASE  **/
 var fs = require('fs');
 var data = fs.readFileSync('../myDB.json');
@@ -47,7 +38,6 @@ function readyDiscord() {
 
 
 
-
 function gotMessage(msg) {
     if (msg.author.bot) return;
 
@@ -62,19 +52,18 @@ function gotMessage(msg) {
             var userId = msg.author.id;
             // Calls register() in register.js
             var newAddr = register.register(userId, returnAddress);
-	    msg.reply("You have registered!\nUse the command '!myAddress' to get your new address")
-	
+            msg.reply("You have registered!\nUse the command '!myAddress' to get your new address")
+
             break;
-	case "!myAddress":
-		    var userId = msg.author.id;
-		    var userAddress = help.idToAddress(userId);
-		    console.log("!myAddress: "+ userAddress + " " + typeof userAddress);
-		    msg.reply("Address: " + userAddress);
-		    break;
+        case "!myAddress":
+            var userId = msg.author.id;
+            var userAddress = help.idToAddress(userId);
+            msg.reply("Address: " + userAddress);
+            break;
         case "!sendTip":
             var payerId = msg.author.id;
             //var receverId = msg.mentions.users.first().id;
-	    var receverId = 420;
+            var receverId = 420;
             if (!help.hasAddress(payerId)) {
                 msg.reply('First you have to register')
                 return;
@@ -106,8 +95,8 @@ function gotMessage(msg) {
         case "!balance":
             var userId = msg.author.id;
             //var userBalance = balance.balance(userId);
-		balance.balance(userId);
-	    	//console.log(userBalance);
+            balance.balance(userId);
+            //console.log(userBalance);
             //msg.reply("Your balance: " + userBalance);
             break;
         case "!withdraw":
@@ -119,9 +108,16 @@ function gotMessage(msg) {
 }
 function isNumber(value) {
     var result = typeof value === 'number' && isFinite(value);
-	return result;
+    return result;
 }
 
 function getHelp() {
     return "This is a smileycoin tippingbot.\nIf you don't have a smileycoin address, you should first get you one. Info at https://smileyco.in \nCommands\:\n!register (your withdraw address)      //Register for an account\n!sendTip @discordUser (amount)      //Send users smileyCoins\n!withdraw                                                 //Withdraw your funds to your withdraw address\n!balance                                                    //Check your balance\n"
 }
+
+
+module.exports = {
+    sendBalance: function (userBalance) {
+        msg.reply("Your balance: " + userBalance);
+    }
+};
