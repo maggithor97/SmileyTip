@@ -22,8 +22,11 @@ module.exports = {
         var n = unspentList.length;
         var sum = 0;
         for (var i = 0; i < n; i++) {
-            sum = sum + unspentList[i].amound;
+            sum = sum + unspentList[i].amount;
         }
+	console.log("help: " + unspentList[0].txid);
+	console.log("help: " + typeof unspentList[0].amount);
+	console.log("help: sum" + sum);
         return sum;
     },
     listunspent: function (addr) {

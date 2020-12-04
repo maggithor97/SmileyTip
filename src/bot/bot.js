@@ -5,6 +5,15 @@ var balance = require('./balance');
 var help = require('./helpFunctions');
 
 
+module.exports = {
+    sendBalance: function (userBalance){
+        console.log("bot.js: sendBalance function:  " + userBalance);
+    }
+};
+
+
+
+
 /** DATABASE  **/
 var fs = require('fs');
 var data = fs.readFileSync('../myDB.json');
@@ -35,6 +44,8 @@ client.on('message', gotMessage);
 function readyDiscord() {
     console.log('Velkominn boti!');
 };
+
+
 
 
 function gotMessage(msg) {
@@ -94,9 +105,10 @@ function gotMessage(msg) {
 
         case "!balance":
             var userId = msg.author.id;
-            var userBalance = balance.balance(userId);
-	    	console.log(userBalance);
-            msg.reply("Your balance: " + userBalance);
+            //var userBalance = balance.balance(userId);
+		balance.balance(userId);
+	    	//console.log(userBalance);
+            //msg.reply("Your balance: " + userBalance);
             break;
         case "!withdraw":
             var userId = msg.author.id;

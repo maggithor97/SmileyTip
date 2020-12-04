@@ -8,7 +8,11 @@ module.exports = {
     var unspentList = smileyCoin.getListUnspent(payerAddr);
 
     unspentList.then(function (result) {
+      console.log("balance.js: " + result);
       var payersBalance = help.getBalance(result);
+      console.log("balance.js : " + payersBalance);
+      var bot = require('./bot.js');
+      bot.sendBalance(payersBalance);
       return payersBalance;
     });
   }
