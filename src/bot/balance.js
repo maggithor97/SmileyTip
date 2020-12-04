@@ -9,7 +9,7 @@ module.exports = {
 
     unspentList.then(function (result) {
       console.log("balance.js: " + result);
-      var payersBalance = help.getBalance(result);
+      var payersBalance = help.getBalance(JSON.parse(result));
       console.log("balance.js : " + payersBalance);
       var bot = require('./bot.js');
       bot.sendBalance(payersBalance);
