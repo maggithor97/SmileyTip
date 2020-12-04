@@ -12,7 +12,7 @@ module.exports = {
     var payerAddr = help.idToAddress(payerId);
     var receverAddr = help.idToAddress(receverId);
 
-    
+
     var unspentList = listunspent(payerAddr);
     unspentList.then(function (result) {
       console.log(result);
@@ -25,16 +25,19 @@ module.exports = {
       var createHex = smileyCoin.createRawTransaction(result, amount, payerAddr, receverAddr);
       createHex.then(function (hexResult) {
         /** Sign and send */
-	      console.log("sendTip.js: CRT hex: " + hexResult);
+        console.log("sendTip.js: CRT hex: " + hexResult);
         var signHex = smileyCoin.signRawTransaction(hexResult);
         signHex.then(function (signObjString) {
-	      console.log("sendTip.js: SRT hex: " + signObj);
-	var signObj = JSON.parse(signObjString);
+
+          var signObj = JSON.parse(signObjString);
           var signHex = signObj.hex;
+          console.log("sendTip.js: SRT hex: " + signObj);
           var txid = smileyCoin.sendRawTransaction(signHex);
           txid.then(function (txid) {
-		  
-	      console.log("sendTip.js: send txid: " + txid);
+
+            console.log("sendTip.js: send txid: " + txid);
+            var bot = require('./bot');
+            bot.notifySendTip(payerId, receverId, amount);
             return txid;
           })
         })

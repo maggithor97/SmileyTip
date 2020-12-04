@@ -80,6 +80,7 @@ function gotMessage(msg) {
             var result = sendTip.sendtip(payerId, receverId, amound);
             switch (result) {
                 case 0:
+                    msg.reply("Error, check your balance");
                     console.log("Error: 0")
                     break;
                 case 1:
@@ -96,19 +97,19 @@ function gotMessage(msg) {
             var userId = msg.author.id;
             //var userBalance = balance.balance(userId);
             balance.balance(userId);
-	    
+
             //console.log(userBalance);
             //msg.reply("Your balance: " + userBalance);
             break;
         case "!withdraw":
             var userId = msg.author.id;
             var txid = withdraw.withdraw(userId);
-	    if (txid < 0) {
-	        msg.reply("You have no SMLY to withdraw");
-	    }else{
+            if (txid < 0) {
+                msg.reply("You have no SMLY to withdraw");
+            } else {
                 msg.reply("You have withdrawn. Txid: " + txid);
-	    }
-	    break;
+            }
+            break;
     }
 
 }
@@ -123,7 +124,14 @@ function getHelp() {
 
 
 module.exports = {
-    sendBalance: function (userBalance, userId) {
-	client.users.cache.get(userId).send('Your balance: ' + userBalance);
+    notifyBalance: function (userBalance, userId) {
+        client.users.cache.get(userId).send('Your balance: ' + userBalance);
+    },
+    notifySendTip: function (payerId, receverId, amount) {
+        var payer = client.users.cache.get(payerId).username;
+        //var recever = client.users.cache.get(receverId).username;
+        client.users.cache.get(payerId).send('You sent ' + recever + ' ' + amount + "SMLY's");
+        //client.users.cache.get(receverId).send(payer+ ' sent you ' + amount+"SMLY's");
     }
+
 };

@@ -16,7 +16,7 @@ module.exports = {
 
     getPrivKey: function (publicAddr) {
         return new Promise((resolve, reject) => {
-            exec("smileycoin-cli dumpprivkey "+ publicAddr, (error, stdout, stderr) => {
+            exec("smileycoin-cli dumpprivkey " + publicAddr, (error, stdout, stderr) => {
                 if (error) {
                     console.warn(error);
                 }
@@ -37,8 +37,8 @@ module.exports = {
     },
 
     createRawTransaction: function (unspent, amount, payerAddr, receverAddr) {
-	   let unspentList = JSON.parse(unspent)
-	    var myInputs = [];
+        let unspentList = JSON.parse(unspent)
+        var myInputs = [];
         var smileySum = 0;
         var i = 0;
         while (amount + 1 > smileySum) {
@@ -58,18 +58,18 @@ module.exports = {
             //    receverAddr.toString(): amount,
             //    payerAddr: moneyBack
             //};
-	    
-	   myOutputs[receverAddr] = amount;
-	    myOutputs[payerAddr] = moneyBack;
+
+            myOutputs[receverAddr] = amount;
+            myOutputs[payerAddr] = moneyBack;
         } else {
-		myOutputs[receverAddr] = amount;
+            myOutputs[receverAddr] = amount;
         }
         // Test
-	console.log("myOutputs:\n" + JSON.stringify(myOutputs));
-        var createCommand = "smileycoin-cli createrawtransaction " +"'"+ JSON.stringify(myInputs) +"' "+"'"+ JSON.stringify(myOutputs)+"'";
+        console.log("myOutputs:\n" + JSON.stringify(myOutputs));
+        var createCommand = "smileycoin-cli createrawtransaction " + "'" + JSON.stringify(myInputs) + "' " + "'" + JSON.stringify(myOutputs) + "'";
         console.log("createRaw command: \n" + createCommand);
         //
-	console.log("\n\n")
+        console.log("\n\n")
         return new Promise((resolve, reject) => {
             exec(createCommand, (error, stdout, stderr) => {
                 if (error) {
