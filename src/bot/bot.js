@@ -96,6 +96,7 @@ function gotMessage(msg) {
             var userId = msg.author.id;
             //var userBalance = balance.balance(userId);
             balance.balance(userId);
+	    
             //console.log(userBalance);
             //msg.reply("Your balance: " + userBalance);
             break;
@@ -117,7 +118,7 @@ function getHelp() {
 
 
 module.exports = {
-    sendBalance: function (userBalance) {
-        msg.reply("Your balance: " + userBalance);
+    sendBalance: function (userBalance, userId) {
+	client.users.cache.get(userId).send('Your balance: ' + userBalance);
     }
 };

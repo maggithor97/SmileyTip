@@ -10,8 +10,8 @@ module.exports = {
     unspentList.then(function (result) {
       var payersBalance = help.getBalance(JSON.parse(result));
       var bot = require('./bot.js');
-      bot.sendBalance(payersBalance);
-      return payersBalance;
+      bot.sendBalance(payersBalance, userId);
+      //return payersBalance;
     });
   }
 };
