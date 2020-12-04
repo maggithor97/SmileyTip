@@ -1,19 +1,18 @@
 var fs = require('fs');
 var smileyCoin = require('../smiley/smilecoin-cli');
 
-/** DATABASE */
-var data = fs.readFileSync('../myDB.json');
-var users = JSON.parse(data);
+
 
 module.exports = {
     idToAddress: function (userId) {
-        var data1 = fs.readFileSync('../myDB.json');
-        var users1 = JSON.parse(data1);
+        /** DATABASE */
+        var data = fs.readFileSync('../myDB.json');
+        var users = JSON.parse(data);
         var userIdString = userId.toString();
-        var n = users1.Users.length;
+        var n = users.Users.length;
         for (var i = 0; i < n; i++) {
-            if (users1.Users[i].id == userIdString) {
-                return users1.Users[i].publicAddress;
+            if (users.Users[i].id == userIdString) {
+                return users.Users[i].publicAddress;
             }
         }
         return "nothing"
@@ -30,6 +29,9 @@ module.exports = {
         return smileyCoin.getListUnspent(addr);
     },
     getWithdrawAddress: function (userId) {
+        /** DATABASE */
+        var data = fs.readFileSync('../myDB.json');
+        var users = JSON.parse(data);
         var n = users.Users.length;
         for (var i = 0; i < n; i++) {
             if (users.Users[i].id == userId) {
@@ -38,6 +40,9 @@ module.exports = {
         }
     },
     hasAddress: function (userId) {
+        /** DATABASE */
+        var data = fs.readFileSync('../myDB.json');
+        var users = JSON.parse(data);
         var n = users.Users.length;
         for (var i = 0; i < n; i++) {
             if (users.Users[i].id == userId) {

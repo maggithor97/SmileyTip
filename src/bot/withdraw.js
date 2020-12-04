@@ -5,11 +5,13 @@ var smileyCoin = require('../smiley/smilecoin-cli');
 module.exports = {
 	// Main function
 	withdraw: function (userId) {
-		var balance = balance.balance(userId);
+
+		var withdrawAddr = help.getWithdrawAddress(userId);
 		var userAddr = help.idToAddress(userId);
 		var unspent = help.listunspent(userAddr)
-		var withdrawAddr = help.getWithdrawAddress(userId);
+		
 		unspent.then(function (result) {
+			var balance = help.getBalance(result);
 			/** Create raw */
 			var createHex = smileyCoin.createRawTransaction(result, balance-1, userAddr, withdrawAddr);
 			createHex.then(function (hexResult) {
