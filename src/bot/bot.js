@@ -103,7 +103,12 @@ function gotMessage(msg) {
         case "!withdraw":
             var userId = msg.author.id;
             var txid = withdraw.withdraw(userId);
-            msg.reply("You have withdrawn. Txid: " + txid);
+	    if (txid < 0) {
+	        msg.reply("You have no SMLY to withdraw");
+	    }else{
+                msg.reply("You have withdrawn. Txid: " + txid);
+	    }
+	    break;
     }
 
 }
