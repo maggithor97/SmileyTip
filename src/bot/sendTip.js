@@ -17,7 +17,8 @@ module.exports = {
     unspentList.then(function (result) {
       console.log(result);
       /** Does he have the money */
-      var payersBalance = help.getBalance(result);
+      var payersBalance = help.getBalance(JSON.parse(result));
+      console.log("payersBalance: " + payersBalance);
       if (payersBalance < amount) {
 	      return 1;
       }

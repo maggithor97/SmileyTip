@@ -10,7 +10,7 @@ module.exports = {
     unspentList.then(function (result) {
       var payersBalance = help.getBalance(JSON.parse(result));
       var bot = require('./bot.js');
-      bot.sendBalance(payersBalance, userId);
+      bot.notifyBalance(payersBalance, userId);
       //return payersBalance;
     });
   }
