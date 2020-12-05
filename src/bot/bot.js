@@ -33,9 +33,12 @@ function gotMessage(msg) {
             var returnAddress = messege[1];
             var userId = msg.author.id;
             // Calls register() in register.js
-            var newAddr = register.register(userId, returnAddress);
-            msg.reply("You have registered!\nUse the command '!myAddress' to get your new address")
-
+            register.register(userId, returnAddress);
+            if (help.hasAddress(userId)) {
+                msg.reply("You have already registered!\nUse the command '!myAddress' to view your address")
+            } else {
+                msg.reply("You have registered!\nUse the command '!myAddress' to view your new address")
+            }
             break;
         case "!myAddress":
             var userId = msg.author.id;
