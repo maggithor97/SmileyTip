@@ -43,22 +43,31 @@ function gotMessage(msg) {
         case "!myAddress":
             var userId = msg.author.id;
             var userAddress = help.idToAddress(userId);
-            msg.reply("Address: " + userAddress);
+            if (userAddress = "nothing") {
+                msg.reply("First you have to register.\nTry !help for info")
+            } else {
+                msg.reply("Address: " + userAddress);
+            }
             break;
         case "!myWithdrawAddress":
             var userId = msg.author.id;
             var userAddress = help.idToWithdrawAddress(userId);
-            msg.reply("Your withdraw address: " + userAddress);
+            if (userAddress = "nothing") {
+                msg.reply("First you have to register.\nTry !help for info")
+            } else {
+                msg.reply("Your withdraw address: " + userAddress);
+            }
             break;
         case "!changeWithdrawAddress":
             var userId = msg.author.id;
             var newAddress = messege[1];
-            var good = help.changeWithdrawAddress(newAddress,userId);
+            var good = help.changeWithdrawAddress(newAddress, userId);
             if (good) {
                 msg.reply("Withdraw address changed!")
             } else {
                 msg.reply("Something went wrong. Have you registered yet?\nTry !help for info")
             }
+            break;
         case "!sendTip":
             var payerId = msg.author.id;
             //var receverId = msg.mentions.users.first().id;
@@ -86,8 +95,8 @@ function gotMessage(msg) {
             break;
         case "!withdraw":
             var userId = msg.author.id;
-            
-           
+
+
             if (help.hasAddress(userId)) {
                 withdraw.withdraw(userId);
                 msg.reply("You have withdrawn. Check dm's for info");

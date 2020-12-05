@@ -72,7 +72,7 @@ module.exports = {
         for (var i = 0; i < n; i++) {
             if (users.Users[i].id == userIdString) {
                 users.Users[i].withdrawAddress = newAddress;
-                return ture;
+                return true;
             }
         }
         return false;
