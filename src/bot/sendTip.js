@@ -1,6 +1,7 @@
 var fs = require('fs');
 var smileyCoin = require('../smiley/smilecoin-cli');
 var help = require('./helpFunctions');
+var bot = require('./bot');
 
 /** DATABASE */
 var data = fs.readFileSync('../myDB.json');
@@ -15,12 +16,11 @@ module.exports = {
 
     var unspentList = listunspent(payerAddr);
     unspentList.then(function (result) {
-      console.log(result);
       /** Does he have the money */
       var payersBalance = help.getBalance(JSON.parse(result));
-      console.log("payersBalance: " + payersBalance);
       if (payersBalance < amount) {
-	      return 1;
+        //bot.errorSendTip(1,payerId);
+        return 1;
       }
       /** Create raw */
       var createHex = smileyCoin.createRawTransaction(result, amount, payerAddr, receverAddr);
