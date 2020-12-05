@@ -64,20 +64,14 @@ function gotMessage(msg) {
 
         case "!balance":
             var userId = msg.author.id;
-            //var userBalance = balance.balance(userId);
             balance.balance(userId);
-
-            //console.log(userBalance);
-            //msg.reply("Your balance: " + userBalance);
+            msg.reply("I sent you your balance in dm");
             break;
         case "!withdraw":
             var userId = msg.author.id;
-            var txid = withdraw.withdraw(userId);
-            if (txid < 0) {
-                msg.reply("You have no SMLY to withdraw");
-            } else {
-                msg.reply("You have withdrawn. Txid: " + txid);
-            }
+            withdraw.withdraw(userId);
+            msg.reply("You have withdrawn. Check dm's for info");
+
             break;
     }
 
@@ -106,6 +100,14 @@ module.exports = {
     errorSendTip: function (errorNr, payerId) {
         if (errorNr = 1) {
             client.users.cache.get(payerId).send("not enough balance for that transaction");
+        }
+    },
+    notifyWithdraw: function (txid, userId, amount) {
+        client.users.cache.get(userId).send('You have withdrawn ' + amount + " SMLY's\nTxid: " + txid);
+    },
+    errorWithdraw: function (errorNr, userId) {
+        if (errorNr = 1) {
+            client.users.cache.get(userId).send("You have no SMLY's to withdraw");
         }
     }
 

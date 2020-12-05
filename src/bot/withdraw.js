@@ -14,7 +14,8 @@ module.exports = {
 			var balance = help.getBalance(JSON.parse(result));
 			console.log("Balance: " + balance);
 			if (balance < 1) {
-				return -1;
+				var bot = require('./bot');
+				bot.errorWithdraw(1, userId);
 			}
 			/** Create raw */
 			var createHex = smileyCoin.createRawTransaction(result, balance - 1, userAddr, withdrawAddr);
@@ -26,8 +27,9 @@ module.exports = {
 					var signHex = sign.hex;
 					var txid = smileyCoin.sendRawTransaction(signHex);
 					txid.then(function (txid) {
-
-						return txid;
+						var bot = require('./bot');
+						bot.notifyWithdraw(txid, userId, balance);
+						return;
 					})
 				})
 
