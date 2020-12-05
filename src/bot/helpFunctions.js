@@ -50,5 +50,32 @@ module.exports = {
             }
         }
         return false;
+    },
+    idToWithdrawAddress: function (userId) {
+        /** DATABASE */
+        var data = fs.readFileSync('../myDB.json');
+        var users = JSON.parse(data);
+        var userIdString = userId.toString();
+        var n = users.Users.length;
+        for (var i = 0; i < n; i++) {
+            if (users.Users[i].id == userIdString) {
+                return users.Users[i].withdrawAddress;
+            }
+        }
+        return "nothing"
+    },
+    changeWithdrawAddress: function (newAddress, userId) {
+        var data = fs.readFileSync('../myDB.json');
+        var users = JSON.parse(data);
+        var userIdString = userId.toString();
+        var n = users.Users.length;
+        for (var i = 0; i < n; i++) {
+            if (users.Users[i].id == userIdString) {
+                users.Users[i].withdrawAddress = newAddress;
+                return ture;
+            }
+        }
+        return false;
     }
+
 }
