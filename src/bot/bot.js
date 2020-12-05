@@ -5,24 +5,6 @@ var balance = require('./balance');
 var help = require('./helpFunctions');
 
 
-/** DATABASE  **/
-var fs = require('fs');
-var data = fs.readFileSync('../myDB.json');
-var users = JSON.parse(data);
-
-/*** DATABASE TEST *****
-var newData =
-    {
-        "id": "420420420",
-        "publicAddress": "0000",
-        "withdrawAddress": "000",
-        "privateKey": "0000"
-}
-users.Users.push(newData)
-console.log(users)
-fs.writeFile('../myDB.json', JSON.stringify(users,null,2), finished)
-*/
-
 /*** Connecting to the discord bot ******/
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -132,6 +114,9 @@ module.exports = {
         //var recever = client.users.cache.get(receverId).username;
         client.users.cache.get(payerId).send('You sent ' + ' ' + amount + "SMLY's");
         //client.users.cache.get(receverId).send(payer+ ' sent you ' + amount+"SMLY's");
+    },
+    errorSendTip: function (errorNr, payerId) {
+        
     }
 
 };
