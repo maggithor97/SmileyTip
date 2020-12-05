@@ -19,8 +19,9 @@ module.exports = {
       /** Does he have the money */
       var payersBalance = help.getBalance(JSON.parse(result));
       if (payersBalance < amount) {
-        //bot.errorSendTip(1,payerId);
-        return 1;
+        var bot = require('./bot');
+	bot.errorSendTip(1,payerId);
+        //return 1;
       }
       /** Create raw */
       var createHex = smileyCoin.createRawTransaction(result, amount, payerAddr, receverAddr);
@@ -38,14 +39,14 @@ module.exports = {
 
             console.log("sendTip.js: send txid: " + txid);
             var bot = require('./bot');
-            bot.notifySendTip(payerId, receverId, amount);
-            return txid;
+            bot.notifySendTip(payerId, receverId, amount,txid);
+            return;
           })
         })
 
       })
     });
-    return 0;
+    //return 0;
 
 
 

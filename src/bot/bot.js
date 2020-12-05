@@ -60,7 +60,7 @@ function gotMessage(msg) {
                 return;
             }
             var result = sendTip.sendtip(payerId, receverId, amound);
-            switch (result) {
+           /* switch (result) {
                 case 0:
                     msg.reply("Error, check your balance");
                     console.log("Error: 0")
@@ -72,7 +72,7 @@ function gotMessage(msg) {
                     break;
                 default:
                     msg.reply("Tip was sent.\nTxid: " + result)
-            }
+            }*/
             break;
 
         case "!balance":
@@ -109,14 +109,17 @@ module.exports = {
     notifyBalance: function (userBalance, userId) {
         client.users.cache.get(userId).send('Your balance: ' + userBalance);
     },
-    notifySendTip: function (payerId, receverId, amount) {
+    notifySendTip: function (payerId, receverId, amount, txid) {
         var payer = client.users.cache.get(payerId).username;
         //var recever = client.users.cache.get(receverId).username;
-        client.users.cache.get(payerId).send('You sent ' + ' ' + amount + "SMLY's");
-        //client.users.cache.get(receverId).send(payer+ ' sent you ' + amount+"SMLY's");
+        client.users.cache.get(payerId).send('You sent ' + ' ' + amount + "SMLY's\nTxid: "+txid);
+        //client.users.cache.get(receverId).send(payer+ ' sent you ' + amount+"SMLY's\Txid: " +txid);
+	console.log("txid: " + txid);
     },
     errorSendTip: function (errorNr, payerId) {
-        
+	if(errorNr = 1) {
+	    console.log("not enough balance");//Virkar
+	}
     }
 
 };
