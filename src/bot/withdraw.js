@@ -12,7 +12,6 @@ module.exports = {
 
 		unspent.then(function (result) {
 			var balance = help.getBalance(JSON.parse(result));
-			console.log("Balance: " + balance);
 			if (balance < 1) {
 				var bot = require('./bot');
 				bot.errorWithdraw(1, userId);

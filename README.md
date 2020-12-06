@@ -36,14 +36,14 @@ Then run the bot using "node bot.js"
 * !register (your withdraw address) 
     * Register to the bot's DB with your withdraw address (your personal address) 
 * !myAddress 
-     * Shows you your discord smileycoin address
+     * Shows your discord smileycoin address
 * !sendTip @someone (amount) 
      * Send someone in the server x amount of SMLY
 * !withdraw
      * Withdraw all your SMLY's from your discord SMLY address to your withdraw address
 * !balance
-     * Show's you your balance
+     * Shows your balance
 ## How to use
-1. First register with command `!regiser BFCuv5jcuXgBgUE2ETGMefJuNkTYg3nvCU` where `BFCuv5jcuXgBgUE2ETGMefJuNkTYg3nvCU` is my personal address.
+1. First register with command `!register BFCuv5jcuXgBgUE2ETGMefJuNkTYg3nvCU` where `BFCuv5jcuXgBgUE2ETGMefJuNkTYg3nvCU` is my personal address.
 2. Use command `!myAddress` to veiw your new address.
 3. Send some SMLY's to the address the bot gave you. Then you can use that money to tip everyone who has an address in that server.

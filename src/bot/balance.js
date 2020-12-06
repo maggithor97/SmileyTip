@@ -11,7 +11,6 @@ module.exports = {
       var payersBalance = help.getBalance(JSON.parse(result));
       var bot = require('./bot.js');
       bot.notifyBalance(payersBalance, userId);
-      //return payersBalance;
     });
   }
 };

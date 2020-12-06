@@ -1,11 +1,8 @@
 var fs = require('fs');
 var smileyCoin = require('../smiley/smilecoin-cli');
 
-
-
 module.exports = {
     idToAddress: function (userId) {
-        /** DATABASE */
         var data = fs.readFileSync('../myDB.json');
         var users = JSON.parse(data);
         var userIdString = userId.toString();
@@ -29,7 +26,6 @@ module.exports = {
         return smileyCoin.getListUnspent(addr);
     },
     getWithdrawAddress: function (userId) {
-        /** DATABASE */
         var data = fs.readFileSync('../myDB.json');
         var users = JSON.parse(data);
         var n = users.Users.length;
@@ -40,7 +36,6 @@ module.exports = {
         }
     },
     hasAddress: function (userId) {
-        /** DATABASE */
         var data = fs.readFileSync('../myDB.json');
         var users = JSON.parse(data);
         var n = users.Users.length;
@@ -52,7 +47,6 @@ module.exports = {
         return false;
     },
     idToWithdrawAddress: function (userId) {
-        /** DATABASE */
         var data = fs.readFileSync('../myDB.json');
         var users = JSON.parse(data);
         var userIdString = userId.toString();

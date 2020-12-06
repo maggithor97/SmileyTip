@@ -15,7 +15,7 @@ client.on('ready', readyDiscord);
 client.on('message', gotMessage);
 
 function readyDiscord() {
-    console.log('Velkominn boti!');
+    console.log('Bot is ready!');
 };
 
 
@@ -24,7 +24,7 @@ function gotMessage(msg) {
     if (msg.author.bot) return;
 
     messege = msg.content.split(" ");
-    switch (messege[0]) {
+    switch (messege[0].toLowerCase()) {
         case "!help":
             var helpMessage = getHelp();
             msg.channel.send(helpMessage);
@@ -32,7 +32,7 @@ function gotMessage(msg) {
         case "!register":
             var returnAddress = messege[1];
             var userId = msg.author.id;
-            // Calls register() in register.js
+           
             register.register(userId, returnAddress);
             if (help.hasAddress(userId)) {
                 msg.reply("You have already registered!\nUse the command '!myAddress' to view your address")
@@ -40,7 +40,7 @@ function gotMessage(msg) {
                 msg.reply("You have registered!\nUse the command '!myAddress' to view your new address")
             }
             break;
-        case "!myAddress":
+        case "!myaddress":
             var userId = msg.author.id;
             var userAddress = help.idToAddress(userId);
             if (userAddress = 0) {
@@ -49,7 +49,7 @@ function gotMessage(msg) {
                 msg.reply("Address: " + userAddress);
             }
             break;
-        case "!myWithdrawAddress":
+        case "!mywithdrawaddress":
             var userId = msg.author.id;
             var userAddress = help.idToWithdrawAddress(userId);
             if (userAddress = 0) {
@@ -58,7 +58,7 @@ function gotMessage(msg) {
                 msg.reply("Your withdraw address: " + userAddress);
             }
             break;
-        case "!changeWithdrawAddress":
+        case "!changewithdrawaddress":
             var userId = msg.author.id;
             var newAddress = messege[1];
             var good = help.changeWithdrawAddress(newAddress, userId);
@@ -68,10 +68,9 @@ function gotMessage(msg) {
                 msg.reply("Something went wrong. Have you registered yet?\nTry !help for info")
             }
             break;
-        case "!sendTip":
+        case "!sendtip":
             var payerId = msg.author.id;
-            //var receverId = msg.mentions.users.first().id;
-            var receverId = 420;
+            var receverId = msg.mentions.users.first().id;
             if (!help.hasAddress(payerId)) {
                 msg.reply('First you have to register\nUse !help for info')
                 return;
@@ -85,7 +84,7 @@ function gotMessage(msg) {
                 msg.reply('Command has to be of form:\n!sendTip @someone amound');
                 return;
             }
-            var result = sendTip.sendtip(payerId, receverId, amound);
+            sendTip.sendtip(payerId, receverId, amound);
             break;
 
         case "!balance":
@@ -124,10 +123,10 @@ module.exports = {
     },
     notifySendTip: function (payerId, receverId, amount, txid) {
         var payer = client.users.cache.get(payerId).username;
-        //var recever = client.users.cache.get(receverId).username;
-        client.users.cache.get(payerId).send('You sent ' + ' ' + amount + "SMLY's\nTxid: " + txid);
-        //client.users.cache.get(receverId).send(payer+ ' sent you ' + amount+"SMLY's\Txid: " +txid);
-        console.log("txid: " + txid);
+        var recever = client.users.cache.get(receverId).username;
+        client.users.cache.get(payerId).send('You sent ' + recever + ' ' + amount + "SMLY's\nTxid: " + txid);
+        client.users.cache.get(receverId).send(payer+ ' sent you ' + amount+"SMLY's\Txid: " +txid);
+
     },
     errorSendTip: function (errorNr, payerId) {
         if (errorNr = 1) {

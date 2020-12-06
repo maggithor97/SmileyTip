@@ -32,16 +32,13 @@ module.exports = {
                 }
                 users.Users.push(newData);
                 fs.writeFile('../myDB.json', JSON.stringify(users, null, 2), finished)
-                console.log("register.js: new Address: " + newAddress + "\nregister.js: typeof: " + typeof newAddress);
-                return newAddress;
+                
             })
-            //Spilast á undan
         })
 
 
     }
 };
-
 function finished(err) {
     console.log('all set')
 }

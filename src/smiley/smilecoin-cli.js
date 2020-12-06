@@ -54,22 +54,15 @@ module.exports = {
         // Send max 15 smly to miner
         if (smileySum - amount > 10) {
             var moneyBack = smileySum - amount - 10;
-            //myOutputs = {
-            //    receverAddr.toString(): amount,
-            //    payerAddr: moneyBack
-            //};
-
             myOutputs[receverAddr] = amount;
             myOutputs[payerAddr] = moneyBack;
         } else {
             myOutputs[receverAddr] = amount;
         }
-        // Test
-        console.log("myOutputs:\n" + JSON.stringify(myOutputs));
+
         var createCommand = "smileycoin-cli createrawtransaction " + "'" + JSON.stringify(myInputs) + "' " + "'" + JSON.stringify(myOutputs) + "'";
         console.log("createRaw command: \n" + createCommand);
-        //
-        console.log("\n\n")
+
         return new Promise((resolve, reject) => {
             exec(createCommand, (error, stdout, stderr) => {
                 if (error) {
