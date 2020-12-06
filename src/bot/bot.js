@@ -43,7 +43,7 @@ function gotMessage(msg) {
         case "!myAddress":
             var userId = msg.author.id;
             var userAddress = help.idToAddress(userId);
-            if (userAddress = "nothing") {
+            if (userAddress = 0) {
                 msg.reply("First you have to register.\nTry !help for info")
             } else {
                 msg.reply("Address: " + userAddress);
@@ -52,7 +52,7 @@ function gotMessage(msg) {
         case "!myWithdrawAddress":
             var userId = msg.author.id;
             var userAddress = help.idToWithdrawAddress(userId);
-            if (userAddress = "nothing") {
+            if (userAddress = 0) {
                 msg.reply("First you have to register.\nTry !help for info")
             } else {
                 msg.reply("Your withdraw address: " + userAddress);

@@ -15,7 +15,7 @@ module.exports = {
                 return users.Users[i].publicAddress;
             }
         }
-        return "nothing"
+        return 0
     },
     getBalance: function (unspentList) {
         var n = unspentList.length;
@@ -62,7 +62,7 @@ module.exports = {
                 return users.Users[i].withdrawAddress;
             }
         }
-        return "nothing"
+        return 0
     },
     changeWithdrawAddress: function (newAddress, userId) {
         var data = fs.readFileSync('../myDB.json');
