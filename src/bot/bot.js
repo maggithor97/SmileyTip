@@ -8,7 +8,7 @@ var help = require('./helpFunctions');
 /*** Connecting to the discord bot ******/
 const Discord = require('discord.js');
 const client = new Discord.Client();
-client.login('Nzc3OTExNzMzODkzMDcwODY4.X7KUwg.MJ0zY2Cv_w97fA1-FEt0yO-benw');
+client.login('Your bot token here!');
 
 
 client.on('ready', readyDiscord);
