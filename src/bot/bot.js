@@ -114,7 +114,7 @@ function isNumber(value) {
 }
 
 function getHelp() {
-    return "This is a smileycoin tippingbot.\nIf you don't have a smileycoin address, you should first get you one. Info at https://smileyco.in \nCommands\:\n!register (your withdraw address)      //Register for an account\n!sendTip @discordUser (amount)      //Send users smileyCoins\n!withdraw                                                 //Withdraw your funds to your withdraw address\n!balance                                                    //Check your balance\n"
+    return "This is a smileycoin tippingbot.\n    If you don't have a smileycoin address, you should first get you one. Info at https://smileyco.in \n    Commands\:\n    !help                               //Get this message\n    !register (your withdraw address)   //Register for an account\n    !myAddress                          //Gives you your address\n    !sendTip @discordUser (amount)      //Send users smileyCoins\n    !balance                            //Check your balance\n    !withdraw                           //Withdraw your funds to your withdraw address\n    !myWithdrawAddress                  //Gives you your withdraw address\n    !changeWithdrawAddress (new withdraw address)       //Change withdraw address\n"
 }
 
 
